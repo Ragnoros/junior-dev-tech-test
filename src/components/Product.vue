@@ -6,18 +6,18 @@
 </template>
 
 <script>
-import product from '../assets/Product.json'
+import product from "../components/data/product.json";
 
 export default {
-  name: 'ProductPage',
+  name: "ProductPage",
   data() {
     return {
       product: product,
       // Add any other data properties you need
-    }
+    };
   },
   // Any Vue lifecycle hooks and custom JavaScript code can be added here
-}
+};
 </script>
 
 <style scoped lang="scss">
