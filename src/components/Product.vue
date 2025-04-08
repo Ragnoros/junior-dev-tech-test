@@ -55,7 +55,7 @@
           style="border-left: 2px solid red; border-right: 2px solid red"
         >
           Save
-          {{ ((product.rrp - product.selling_price) / product.rrp) * 100 }}%
+          {{ priceReduction }}%
         </p>
       </div>
       <div id="alt-imgs" class="mt-3 pb-3 border-bottom">
@@ -118,6 +118,8 @@ export default {
       altColours: product.alternative_colours,
       sizes: product.product_size_labels,
       gallery: product.media_gallery,
+      priceReduction:
+        ((product.rrp - product.selling_price) / product.rrp) * 100,
       // Add any other data properties you need
     };
   },
