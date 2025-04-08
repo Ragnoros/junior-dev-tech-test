@@ -37,7 +37,34 @@
           {{ ((product.rrp - product.selling_price) / product.rrp) * 100 }}%
         </p>
       </div>
-      <div id="alt-imgs">{{ product.alternative_colours }}</div>
+      <div id="alt-imgs" class="mt-3 pb-3 border-bottom">
+        <ul class="list-group list-group-horizontal">
+          <li
+            class="list-group-item border-0 pe-0"
+            v-for="(colours, index) in altColours"
+            :key="index"
+          >
+            <img
+              :src="colours.image"
+              :width="75"
+              :height="75"
+              class="float-left"
+            />
+          </li>
+        </ul>
+      </div>
+      <div id="sizes" class="mt-3 pb-3 border-bottom">
+        <p class="text-start">Select size:</p>
+        <ul class="list-group list-group-horizontal">
+          <li
+            class="list-group-item d-flex justify-content-center align-items-center"
+            v-for="(size, index) in sizes"
+            :key="index"
+          >
+            <p class="mb-0">{{ size }}</p>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -50,12 +77,14 @@ export default {
   data() {
     return {
       product: product,
+      altColours: product.alternative_colours,
+      sizes: product.product_size_labels,
       // Add any other data properties you need
     };
   },
   // Any Vue lifecycle hooks and custom JavaScript code can be added here
   mounted() {
-    console.log(product.media_gallery);
+    console.log(this.altColours);
   },
 };
 </script>
