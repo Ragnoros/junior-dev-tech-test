@@ -6,13 +6,13 @@
       class="border-0 text-start ms-5"
       style="width: 65%; flex: 2"
     >
-      <div class="row g-0">
+      <div class="row g-0 border-bottom pb-1 mb-3">
         <div class="col-6" v-for="(image, index) in gallery" :key="index">
           <img
             :src="image.image"
             :alt="image.alt"
             style="width: 95%; height: auto"
-            class="img-fluid pb-4"
+            class="img-fluid pb-3"
           />
         </div>
       </div>
@@ -43,8 +43,10 @@
           </thead>
           <tbody class="text-start p-1">
             <tr>
-              <td class="text-decoration-line-through">£{{ product.rrp }}</td>
-              <td class="text-danger">£{{ product.selling_price }}</td>
+              <td class="text-decoration-line-through">
+                £{{ product.rrp }}.00
+              </td>
+              <td class="text-danger">£{{ product.selling_price }}.00</td>
             </tr>
           </tbody>
         </table>
