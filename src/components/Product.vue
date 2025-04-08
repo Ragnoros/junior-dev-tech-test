@@ -1,8 +1,27 @@
 <template>
-  <div id="product">
+  <div id="product" class="d-flex">
     <!-- Add your code here -->
-    <div id="img-panel" class="border text-start" style="width: 65%"></div>
-    <div id="info-panel" class="text-end ms-auto pe-5" style="width: 30%">
+    <div
+      id="img-panel"
+      class="border-0 text-start ms-5"
+      style="width: 65%; flex: 2"
+    >
+      <div class="row g-0">
+        <div class="col-6" v-for="(image, index) in gallery" :key="index">
+          <img
+            :src="image.image"
+            :alt="image.alt"
+            style="width: 95%; height: auto"
+            class="img-fluid pb-4"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      id="info-panel"
+      class="text-end ms-auto pe-5"
+      style="width: 30%; flex: 1"
+    >
       <p class="text-start ps-1" style="border-left: 5px solid red">
         {{ product.product_offer_label }}
       </p>
@@ -48,6 +67,7 @@
               :src="colours.image"
               :width="75"
               :height="75"
+              :alt="colours.alt_text"
               class="float-left"
             />
           </li>
@@ -57,13 +77,29 @@
         <p class="text-start">Select size:</p>
         <ul class="list-group list-group-horizontal">
           <li
-            class="list-group-item d-flex justify-content-center align-items-center"
+            class="list-group-item border-0"
             v-for="(size, index) in sizes"
             :key="index"
+            style="margin-right: -15px"
           >
-            <p class="mb-0">{{ size }}</p>
+            <p class="mb-0 custom-border">{{ size }}</p>
           </li>
         </ul>
+      </div>
+      <div id="addbag-button" class="pb-3">
+        <button
+          type="button"
+          class="btn rounded-pill btn-dark mt-3"
+          style="width: 100%"
+        >
+          Add to bags
+        </button>
+      </div>
+      <div id="description" class="text-start">
+        <p>Description</p>
+        <p>{{ product.product_description }}</p>
+        <p v-html="product.product_bulletpoints"></p>
+        <p>Product code: {{ product.product_sku }}</p>
       </div>
     </div>
   </div>
@@ -79,12 +115,13 @@ export default {
       product: product,
       altColours: product.alternative_colours,
       sizes: product.product_size_labels,
+      gallery: product.media_gallery,
       // Add any other data properties you need
     };
   },
   // Any Vue lifecycle hooks and custom JavaScript code can be added here
   mounted() {
-    console.log(this.altColours);
+    console.log(this.gallery);
   },
 };
 </script>
@@ -95,5 +132,14 @@ export default {
 th,
 td {
   font-weight: normal;
+}
+.custom-border {
+  border: 1.5px solid black;
+  width: 65px;
+  height: 65px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
