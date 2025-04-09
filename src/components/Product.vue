@@ -40,21 +40,23 @@
         >
           <thead>
             <tr>
-              <th scope="col">Original</th>
-              <th scope="col">Now</th>
+              <th class="poppins-medium" scope="col">Original</th>
+              <th class="poppins-medium" scope="col">Now</th>
             </tr>
           </thead>
           <tbody class="text-start p-1">
             <tr>
-              <td class="text-decoration-line-through">
+              <td class="text-decoration-line-through poppins-medium">
                 £{{ product.rrp }}.00
               </td>
-              <td style="color: #b0302f">£{{ product.selling_price }}.00</td>
+              <td class="poppins-medium" style="color: #b0302f">
+                £{{ product.selling_price }}.00
+              </td>
             </tr>
           </tbody>
         </table>
         <p
-          class="px-2"
+          class="px-2 poppins-medium"
           style="
             border-left: 2px solid #b0302f;
             border-right: 2px solid #b0302f;
@@ -236,10 +238,6 @@ export default {
 <style scoped lang="scss">
 @import "../assets/css/poppins.css";
 // Styling to be added here if needed. SASS is allowed if preferred
-th,
-td {
-  font-weight: normal;
-}
 .custom-border {
   width: 75px;
   height: 65px;
@@ -247,9 +245,5 @@ td {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.custom-spacing {
-  margin-left: -15px;
 }
 </style>
