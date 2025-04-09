@@ -52,7 +52,7 @@ On the sizes I did the same as alt colours. I created a new data propertly for t
                 >{{ size }}</label
               >
 
-In the above snipet I used template literals to use the index as a count because each of these buttons needed an id of option1, option2 etc, this allowed me to render the sizes dynamically rather than statically typing them out. I incremented each index by 1, otherwise the first id would be option0 which I don't think would work but i've not actually tested it.<br>
+In the above snipet I used template literals inside the id of the Input tag to use the index to increase the option number because each of these buttons needed an id of option1, option2 etc, this allowed me to render the sizes dynamically rather than statically typing them out. I incremented each index by 1, otherwise the first id would be option0 which I don't think would work but i've not actually tested it.<br>
 I added size to :value to bind it when selecting a size. v-model then bound whatever the value was to selectedSize in the data function.
 <br>
 <br>
