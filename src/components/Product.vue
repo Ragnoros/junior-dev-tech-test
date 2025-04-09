@@ -24,7 +24,7 @@
     >
       <p
         class="text-start ps-1 poppins-light"
-        style="border-left: 5px solid #a34f00"
+        style="border-left: 5px solid #c05404"
       >
         {{ product.product_offer_label }}
       </p>
@@ -49,7 +49,7 @@
               <td class="text-decoration-line-through poppins-medium">
                 £{{ product.rrp }}.00
               </td>
-              <td class="poppins-medium" style="color: #b0302f">
+              <td class="poppins-medium" style="color: #c05404">
                 £{{ product.selling_price }}.00
               </td>
             </tr>
@@ -58,9 +58,9 @@
         <p
           class="px-2 poppins-medium"
           style="
-            border-left: 2px solid #b0302f;
-            border-right: 2px solid #b0302f;
-            color: #b0302f;
+            border-left: 2px solid #c05404;
+            border-right: 2px solid #c05404;
+            color: #c05404;
           "
         >
           Save
