@@ -77,7 +77,37 @@
       </div>
       <div id="sizes" class="mt-3 pb-3 border-bottom">
         <p class="text-start">Select size:</p>
-        <ul class="list-group list-group-horizontal">
+        <div class="container">
+          <div class="row">
+            <div class="col" v-for="(size, index) in sizes" key="index">
+              <input
+                type="radio"
+                class="btn-check"
+                name="options"
+                :id="`option${index + 1}`"
+                autocomplete="off"
+                checked
+                :value="size"
+                v-model="selectedSize"
+              />
+              <label
+                class="btn btn-outline-dark rounded-0 custom-border"
+                :for="`option${index + 1}`"
+                >{{ size }}</label
+              >
+
+              <!-- <button
+                class="btn btn-outline-dark rounded-0 custom-border"
+                data-bs-toggle="button"
+                aria-pressed="false"
+                autocomplete="off"
+              >
+                {{ size }}
+              </button> -->
+            </div>
+          </div>
+        </div>
+        <!-- <ul class="list-group list-group-horizontal">
           <li
             class="list-group-item border-0"
             v-for="(size, index) in sizes"
@@ -86,15 +116,17 @@
           >
             <p class="mb-0 custom-border">{{ size }}</p>
           </li>
-        </ul>
+        </ul> -->
       </div>
       <div id="addbag-button" class="pb-3">
         <button
           type="button"
           class="btn rounded-pill btn-dark mt-3"
           style="width: 100%"
+          data-bs-toggle="modal"
+          data-bs-target="#addToBagModal"
         >
-          Add to bags
+          Add To Bag
         </button>
       </div>
       <div id="description" class="text-start">
@@ -102,6 +134,55 @@
         <p>{{ product.product_description }}</p>
         <p v-html="product.product_bulletpoints"></p>
         <p>Product code: {{ product.product_sku }}</p>
+      </div>
+    </div>
+    <div
+      class="modal fade"
+      id="addToBagModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content rounded-0">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="item-title">Item Added!</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div
+            class="modal-body d-flex align-items-center justify-content-between"
+          >
+            <img
+              :src="gallery[0].image"
+              :width="75"
+              :height="75"
+              :alt="gallery[0].alt"
+              class="float-left"
+            />
+            <p class="text-end">
+              {{ product.product_title }} <br />
+              You have selected size:
+              {{ selectedSize }}
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary rounded-pill"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-dark rounded-pill">
+              Go To Bag
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -120,12 +201,13 @@ export default {
       gallery: product.media_gallery,
       priceReduction:
         ((product.rrp - product.selling_price) / product.rrp) * 100,
+      selectedSize: null,
       // Add any other data properties you need
     };
   },
   // Any Vue lifecycle hooks and custom JavaScript code can be added here
   mounted() {
-    console.log(this.gallery);
+    console.log(this.selectedSize);
   },
 };
 </script>
@@ -138,12 +220,13 @@ td {
   font-weight: normal;
 }
 .custom-border {
-  border: 1.5px solid black;
   width: 65px;
   height: 65px;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: -15px;
+  margin-top: -15px;
 }
 </style>
