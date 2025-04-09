@@ -68,4 +68,4 @@ I created a new data property again for the gallery. I counted through the galle
 
 I think the sizes could be turned into a drop down, this could potentially make it better for responsivnes. <br>
 <br>
-Possibly condense the the description section into and bullet points into a drop down.
+Possibly condense the description section and bullet points into a drop down.
