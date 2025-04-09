@@ -1,12 +1,12 @@
 <template>
-  <div id="product" class="d-flex">
+  <div id="product" class="d-flex flex-wrap">
     <!-- Add your code here -->
     <div
       id="img-panel"
       class="border-0 text-start ms-5"
-      style="width: 65%; flex: 2"
+      style="flex: 2; min-width: 300px"
     >
-      <div class="row g-0 border-bottom pb-1 mb-3">
+      <div class="row g-2 border-bottom pb-1 mb-3">
         <div class="col-6" v-for="(image, index) in gallery" :key="index">
           <img
             :src="image.image"
@@ -19,13 +19,16 @@
     </div>
     <div
       id="info-panel"
-      class="text-end ms-auto pe-5"
-      style="width: 30%; flex: 1"
+      class="text-end pe-5"
+      style="flex: 1; min-width: 300px; margin-left: auto"
     >
-      <p class="text-start ps-1" style="border-left: 5px solid red">
+      <p
+        class="text-start ps-1 poppins-light"
+        style="border-left: 5px solid #a34f00"
+      >
         {{ product.product_offer_label }}
       </p>
-      <p class="text-start border-bottom pb-3">
+      <p class="text-start border-bottom pb-3 poppins-medium" id="item-title">
         {{ product.product_title }} | {{ product.product_colour }}
       </p>
       <div
@@ -46,20 +49,24 @@
               <td class="text-decoration-line-through">
                 £{{ product.rrp }}.00
               </td>
-              <td class="text-danger">£{{ product.selling_price }}.00</td>
+              <td style="color: #b0302f">£{{ product.selling_price }}.00</td>
             </tr>
           </tbody>
         </table>
         <p
-          class="text-danger px-2"
-          style="border-left: 2px solid red; border-right: 2px solid red"
+          class="px-2"
+          style="
+            border-left: 2px solid #b0302f;
+            border-right: 2px solid #b0302f;
+            color: #b0302f;
+          "
         >
           Save
           {{ priceReduction }}%
         </p>
       </div>
       <div id="alt-imgs" class="mt-3 pb-3 border-bottom">
-        <ul class="list-group list-group-horizontal">
+        <!-- <ul class="list-group list-group-horizontal">
           <li
             class="list-group-item border-0 pe-0"
             v-for="(colours, index) in altColours"
@@ -73,13 +80,29 @@
               class="float-left"
             />
           </li>
-        </ul>
+        </ul> -->
+        <div class="container">
+          <div class="row g-3 text-start">
+            <div
+              class="col-auto"
+              v-for="(colours, index) in altColours"
+              :key="index"
+            >
+              <img
+                :src="colours.image"
+                :width="75"
+                :height="75"
+                :alt="colours.alt_text"
+              />
+            </div>
+          </div>
+        </div>
       </div>
       <div id="sizes" class="mt-3 pb-3 border-bottom">
-        <p class="text-start">Select size:</p>
+        <p class="text-start poppins-light">Select Size:</p>
         <div class="container">
-          <div class="row">
-            <div class="col" v-for="(size, index) in sizes" key="index">
+          <div class="row g-2">
+            <div class="col-auto" v-for="(size, index) in sizes" :key="index">
               <input
                 type="radio"
                 class="btn-check"
@@ -122,6 +145,7 @@
         <button
           type="button"
           class="btn rounded-pill btn-dark mt-3"
+          :disabled="!selectedSize"
           style="width: 100%"
           data-bs-toggle="modal"
           data-bs-target="#addToBagModal"
@@ -176,7 +200,7 @@
               class="btn btn-secondary rounded-pill"
               data-bs-dismiss="modal"
             >
-              Close
+              Continue Shopping
             </button>
             <button type="button" class="btn btn-dark rounded-pill">
               Go To Bag
@@ -206,9 +230,6 @@ export default {
     };
   },
   // Any Vue lifecycle hooks and custom JavaScript code can be added here
-  mounted() {
-    console.log(this.selectedSize);
-  },
 };
 </script>
 
@@ -220,13 +241,15 @@ td {
   font-weight: normal;
 }
 .custom-border {
-  width: 65px;
+  width: 75px;
   height: 65px;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.custom-spacing {
   margin-left: -15px;
-  margin-top: -15px;
 }
 </style>
